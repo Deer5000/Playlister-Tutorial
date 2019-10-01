@@ -29,10 +29,10 @@ def playlists_index():
 
 
 
-@app.route('/')
-def playlists_index():
-    """Show all playlists."""
-    return render_template('playlists_index.html', playlists=playlists)
+# @app.route('/')
+# def playlists_index():
+#     """Show all playlists."""
+#     return render_template('playlists_index.html', playlists=playlists)
 # @app.route('/')
 # def playlists_index():
 #     """Show all playlists."""
