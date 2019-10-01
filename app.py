@@ -4,6 +4,9 @@ app = Flask(__name__)
 client = MongoClient()
 db = client.Playlister
 playlists = db.playlists
+from bson.objectid import ObjectId
+
+
 
 @app.route('/')
 def playlists_index():
@@ -17,13 +20,6 @@ def playlists_new():
     return render_template('playlists_new.html')
 
 
-# @app.route('/playlists', methods=['POST'])
-# def playlists_submit():
-#     """Submit a new playlist."""
-#     print(request.form.to_dict())
-#     return redirect(url_for('playlists_index'))
-
-
 @app.route('/playlists', methods=['POST'])
 def playlists_submit():
     """Submit a new playlist."""
@@ -32,8 +28,14 @@ def playlists_submit():
         'description': request.form.get('description'),
         'videos': request.form.get('videos').split()
     }
-    playlists.insert_one(playlist)
-    return redirect(url_for('playlists_index'))
+    playlist_id = playlists.insert_one(playlist).inserted_id
+    return redirect(url_for('playlists_show', playlist_id=playlist_id))
+
+
+@app.route('/playlists/<playlist_id>')
+def playlists_show(playlist_id):
+    """Show a single playlist."""
+    return f'My ID is {playlist_id}'
 
 
 if __name__ == '__main__':
