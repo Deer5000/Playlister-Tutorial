@@ -1,4 +1,5 @@
 from unittest import TestCase, main as unittest_main, mock
+from app import app
 from bson.objectid import ObjectId
 
 sample_playlist_id = ObjectId('5d55cffc4a3d4031f42827a3')
