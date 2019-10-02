@@ -1,21 +1,43 @@
 <fieldset>
-    <legend>Edit Playlist</legend>
+    <legend>{{title}}</legend>
     <!-- TITLE -->
-    <div class='form-group'>
+    <p>
         <label for='playlist-title'>Title</label><br>
-        <input class='form-control' id='playlist-title' type='text' name='title' value='{{ playlist.title }}'/>
-    </div>
+        <input id='playlist-title' type='text' name='title' value='{{ playlist.title }}'/>
+    </p>
 
     <!-- DESCRIPTION -->
-    <div class='form-group'>
+    <p>
         <label for='description'>Description</label><br>
-        <input class='form-control' id='description' type='text' name='description' value='{{ playlist.description }}' />
-    </div>
+        <input id='description' type='text' name='description' value='{{ playlist.description }}' />
+    </p>
 
-    <!-- DESCRIPTION -->
-    <div class='form-group'>
-        <label for='playlist-videos'>Videos</label><br/>
-        <p class='text-muted'>Add videos in the form of 'https://youtube.com/embed/KEY'. Separate with a newline.</p>
-        <textarea class='form-control' id='playlist-videos' name='videos' rows='10' />{{ "\n".join(playlist.videos) }}</textarea>
-    </div>
+    <!-- VIDEO LINKS -->
+    <p>
+        <label for='playlist-videos'>Videos</label><br>
+        <p>Add videos in the form of 'https://youtube.com/embed/KEY'. Separate with a newline.</p>
+        <textarea id='playlist-videos' name='videos' rows='10'>{{ "\n".join(playlist.videos) }}</textarea>
+    </p>
+    <!--RATING-->
+    <p>
+        <label for='playlist-rating'>Rating</label><br>
+        <p>How would you rate this playlist?</p>
+        <select name='rating'>
+            <option value='1'>1 *</option>
+            <option value='2'>2 **</option>
+            <option value='3'>3 ***</option>
+            <option value='4'>4 ****</option>
+            <option value='5'>5 *****</option>
+        </select>
+    </p>
 </fieldset>
+
+<!-- SAVE BUTTON -->
+<p>
+    <button type='submit'>Save Playlist</button>
+</p>
+
+<!--CANCEL BUTTON-->
+<form action="/">
+    <button type="submit">Cancel Edit</button>
+ </form>
